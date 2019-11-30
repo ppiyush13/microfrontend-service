@@ -1,11 +1,17 @@
 {
-  "name": "pnpm-monorepo",
+  "name": "microfrontend-service",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "init": "mkdir packages && node init.js"
+    "clean": "pnpx rimraf packages node_modules",
+    "install:self": "pnpm i",
+    "install:packages": "pnpm i --recursive",
+    "recreate:packages": "pnpm run clean && mkdir packages && pnpm run install:self",
+    "init": "node init.js",
+    "setup": "pnpm run recreate:packages && pnpm run init && pnpm run install:packages",
+    "start": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +19,7 @@
   "dependencies": {
     "@pnpm/exec": "^1.1.5",
     "express": "^4.17.1",
+    "rimraf": "^3.0.0",
     "simple-git": "^1.126.0"
   }
 }

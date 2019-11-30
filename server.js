@@ -26,6 +26,7 @@ const port = 3000;
 }); */
 
 // getting from github for now
+// once decided, install all the packages with --production
 const getPackage = async (package, version) => {
     const packagePath = path.resolve('packages', package);
     const git = simpleGit(packagePath); 
